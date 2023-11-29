@@ -1,8 +1,7 @@
 package dev.lpa;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 public class Task3 {
 
@@ -11,27 +10,28 @@ public class Task3 {
             throw new IllegalArgumentException("Input must be between 1 and 100");
         }
 
+        int[] result = new int[n];
+        Random rand = new Random();
 
-        Integer[] array = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            array[i] = i - n / 2;
+
+        for (int i = 0; i < n - 1; i++) {
+            result[i] = rand.nextInt(101);
         }
 
-
-        List<Integer> list = Arrays.asList(array);
-        Collections.shuffle(list);
-
-
-        int[] result = list.stream().mapToInt(Integer::intValue).toArray();
+        result[n - 1] = -Arrays.stream(result).sum();
 
         return result;
     }
 
     public static void main(String[] args) {
-        int n = 4;
-        int[] generatedArray = generateArray(n);
 
-        System.out.println("Generated array for n=" + n + ": " + Arrays.toString(generatedArray));
+        int n1 = 4;
+        int n2 = 3;
+
+        int[] generatedArray1 = generateArray(n1);
+        int[] generatedArray2 = generateArray(n2);
+
+        System.out.println("Generated array for n=" + n1 + ": " + Arrays.toString(generatedArray1));
+        System.out.println("Generated array for n=" + n2 + ": " + Arrays.toString(generatedArray2));
     }
 }
-
